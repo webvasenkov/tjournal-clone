@@ -5,7 +5,13 @@ import { MdOutlineMoreHoriz } from 'react-icons/md';
 function Comments() {
   return (
     <div className='max-w-sm'>
-      <h2 className='font-semibold'>Comments</h2>
+      <div className='flex gap-2'>
+        <h2 className='font-semibold'>Comments</h2>
+        <button className='hover:text-rose-500 transition'>
+          <MdOutlineMoreHoriz />
+          <span className='sr-only'>Show more comments</span>
+        </button>
+      </div>
       <ul className='mt-4 flex flex-col gap-4'>
         {comments.map((comment, idx) => {
           const { user } = comment;
@@ -28,11 +34,6 @@ function Comments() {
             </li>
           );
         })}
-
-        <button className='hover:text-rose-500 transition'>
-          <MdOutlineMoreHoriz />
-          <span className='sr-only'>Show more comments</span>
-        </button>
       </ul>
     </div>
   );
