@@ -8,7 +8,7 @@ import {
   MdShare,
 } from 'react-icons/md';
 
-function Home() {
+function MainPage() {
   return (
     <>
       <Head>
@@ -20,7 +20,7 @@ function Home() {
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <ul className='flex flex-col gap-8 max-w-md'>
+      <ul className='flex flex-col gap-8'>
         {records.map((record, idx) => {
           return (
             <li
@@ -62,4 +62,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default MainPage;

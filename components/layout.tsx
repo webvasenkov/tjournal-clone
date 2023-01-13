@@ -15,7 +15,7 @@ function Layout({ children }: Props) {
       <Header />
       <div className='container mx-auto flex justify-between mt-8'>
         <Navigation />
-        {children}
+        <div className='max-w-md'>{children}</div>
         <Comments />
       </div>
     </div>

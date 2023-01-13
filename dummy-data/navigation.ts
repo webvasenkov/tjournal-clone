@@ -17,9 +17,9 @@ export const navigation = [
     name: 'Messages',
   },
   {
-    link: '/raiting',
+    link: '/rating',
     Icon: MdMoving,
-    name: 'Raiting',
+    name: 'Rating',
   },
   {
     link: '/subscriptions',
