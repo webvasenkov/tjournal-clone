@@ -13,9 +13,13 @@ function Navigation() {
         const isActive = link == '/' ? path == link : path.includes(link);
 
         return (
-          <li className='group'>
+          <li className='group' key={nav.name}>
             <a className='flex items-center gap-2' key={nav.name} href={link}>
-              <nav.Icon className={cn('group-hover:text-rose-400 transition', { 'text-rose-400': isActive })} />
+              <nav.Icon
+                className={cn('group-hover:text-rose-400 transition', {
+                  'text-rose-400': isActive,
+                })}
+              />
               {nav.name}
             </a>
           </li>

@@ -18,8 +18,8 @@ function Comments() {
           const fullName = `${user.firstName} ${user.lastName}`;
 
           return (
-            <li>
-              <div className='flex items-center gap-2' key={fullName + idx}>
+            <li key={fullName + idx}>
+              <div className='flex items-center gap-2'>
                 <div className='relative w-8 h-8 rounded-md overflow-hidden'>
                   <Image
                     className='object-cover'
