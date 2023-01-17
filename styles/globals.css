@@ -5,3 +5,11 @@
 body {
   background: #fafafa;
 }
+
+.ce-toolbar__content {
+  max-width: inherit;
+}
+
+.ce-block__content {
+  max-width: inherit;
+}

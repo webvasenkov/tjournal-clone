@@ -1,14 +1,22 @@
 import Head from 'next/head';
 import Image from 'next/image';
+import cn from 'classnames';
+import Link from 'next/link';
+import { useState } from 'react';
 import { records } from 'dummy-data/records';
-import {
-  MdOutlineModeComment,
-  MdRepeat,
-  MdOutlineBookmarkBorder,
-  MdShare,
-} from 'react-icons/md';
+import ArticlePanel from 'components/article-panel';
 
 function MainPage() {
+  const [selectedArticle, setSelectedArticle] = useState('');
+
+  function handleSelectArticle(title: string) {
+    return () => setSelectedArticle(title);
+  }
+
+  function resetSelectedArticle() {
+    setSelectedArticle('');
+  }
+
   return (
     <>
       <Head>
@@ -22,13 +30,27 @@ function MainPage() {
       </Head>
       <ul className='flex flex-col gap-8'>
         {records.map((record, idx) => {
+          const key = record.title + idx;
+          const link = `news/${record.title
+            .toLowerCase()
+            .split(' ')
+            .join('-')}`;
+
           return (
             <li
-              className='bg-white p-4 rounded-md flex flex-col gap-4 border border-rose-50'
-              key={record.title + idx}>
-              <h2 className='font-semibold'>{record.title}</h2>
-              <p>{record.text}</p>
-              <div className='relative h-64'>
+              className={cn(
+                'bg-white py-4 px-8 rounded-md border border-rose-50 transition',
+                { 'border-rose-400': selectedArticle == key }
+              )}
+              key={key}>
+              <Link
+                href={link}
+                onMouseMove={handleSelectArticle(key)}
+                onMouseOut={resetSelectedArticle}>
+                <h2 className='font-semibold'>{record.title}</h2>
+              </Link>
+              <p className='mt-4'>{record.text}</p>
+              <div className='relative h-64 mt-4'>
                 <Image
                   className='object-cover'
                   src={record.coverUrl || '/images/default-record-cover.jpg'}
@@ -36,24 +58,7 @@ function MainPage() {
                   alt='Record cover'
                 />
               </div>
-              <div className='flex justify-between'>
-                <button className='text-gray-500 hover:text-rose-400 transition'>
-                  <MdOutlineModeComment />
-                  <span className='sr-only'>Leave a comment</span>
-                </button>
-                <button className='text-gray-500 hover:text-rose-400 transition'>
-                  <MdRepeat />
-                  <span className='sr-only'>Repeat</span>
-                </button>
-                <button className='text-gray-500 hover:text-rose-400 transition'>
-                  <MdOutlineBookmarkBorder />
-                  <span className='sr-only'>Add to bookmark</span>
-                </button>
-                <button className='text-gray-500 hover:text-rose-400 transition'>
-                  <MdShare />
-                  <span className='sr-only'>Share</span>
-                </button>
-              </div>
+              <ArticlePanel className='mt-4' articleLink={link} />
             </li>
           );
         })}

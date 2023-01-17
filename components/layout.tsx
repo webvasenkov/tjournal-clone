@@ -12,7 +12,7 @@ type Props = {
 
 function Layout({ children }: Props) {
   const router = useRouter();
-  const mainLinks = ['rating', 'subscriptions'];
+  const mainLinks = ['rating', 'subscriptions', 'news'];
   const paths = router.asPath.split('/');
   const isMainContent =
     paths.some((path) => mainLinks.includes(path)) ||

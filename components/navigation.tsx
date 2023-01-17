@@ -10,16 +10,12 @@ function Navigation() {
     <ul className='max-w-sm flex flex-col gap-4'>
       {navigation.map((nav) => {
         const { link } = nav;
-        const isActive = link == '/' ? path == link : path.includes(link);
+        const isActive = link == '/' ? path == link : nav.paths.some(p => path.includes(p));
 
         return (
-          <li className='group' key={nav.name}>
+          <li className='group'>
             <a className='flex items-center gap-2' key={nav.name} href={link}>
-              <nav.Icon
-                className={cn('group-hover:text-rose-400 transition', {
-                  'text-rose-400': isActive,
-                })}
-              />
+              <nav.Icon className={cn('group-hover:text-rose-400 transition', { 'text-rose-400': isActive })} />
               {nav.name}
             </a>
           </li>
